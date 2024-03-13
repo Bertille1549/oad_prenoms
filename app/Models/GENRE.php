@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $GENRE_ID
  * @property string $GENRE
  * 
- * @property Collection|PRENOM[] $p_r_e_n_o_m_s
+ * @property Collection|COMPTER[] $c_o_m_p_t_e_r_s
  *
  * @package App\Models
  */
@@ -29,8 +29,8 @@ class GENRE extends Model
 		'GENRE'
 	];
 
-	public function p_r_e_n_o_m_s()
+	public function c_o_m_p_t_e_r_s()
 	{
-		return $this->hasMany(PRENOM::class, 'GENRE_ID');
+		return $this->hasMany(COMPTER::class, 'GENRE_ID');
 	}
 }

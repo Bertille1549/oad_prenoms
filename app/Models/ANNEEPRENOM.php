@@ -10,31 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class NOMBREPRENOMAN
+ * Class ANNEEPRENOM
  * 
- * @property int $NOMBRE_ID
- * @property int $NOMBRE
+ * @property int $ANNEE_ID
+ * @property string $ANNEE
  * 
  * @property Collection|COMPTER[] $c_o_m_p_t_e_r_s
  *
  * @package App\Models
  */
-class NOMBREPRENOMAN extends Model
+class ANNEEPRENOM extends Model
 {
-	protected $table = 'NOMBRE_PRENOM_AN';
-	protected $primaryKey = 'NOMBRE_ID';
+	protected $table = 'ANNEE_PRENOM';
+	protected $primaryKey = 'ANNEE_ID';
 	public $timestamps = false;
 
-	protected $casts = [
-		'NOMBRE' => 'int'
-	];
-
 	protected $fillable = [
-		'NOMBRE'
+		'ANNEE'
 	];
 
 	public function c_o_m_p_t_e_r_s()
 	{
-		return $this->hasMany(COMPTER::class, 'NOMBRE_ID');
+		return $this->hasMany(COMPTER::class, 'ANNEE_ID');
 	}
 }
