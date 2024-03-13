@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 // pour la pagination
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\CursorPaginator;
+
 
 class PublicController extends Controller
 {
@@ -20,6 +20,7 @@ class PublicController extends Controller
     public function home() {
         return view('home');
     }
+
     // méthode statistics
     public function statistics() {
 
@@ -31,12 +32,21 @@ class PublicController extends Controller
         //$data =
     }
 
+    //méthode liste
+    // liste des prénoms
     public function liste() {
-        $prenoms = PRENOM::take(15)->get();
+        //$prenoms = PRENOM::listePrenoms($page);
+        //$prenoms = PRENOM::query()->paginate(15,'PRENOM', 'page');
+        //$prenoms = PRENOM::all()->take(15)->all();
+        //$totalPages = PRENOM::all()->count()/15;
+        $prenoms = PRENOM::all();
 
         // on retourne la vue
         return view('prenom.liste', [
             'prenoms' => $prenoms
+            //'page' => $page
+            //'totalPages' =>$totalPages
+
         ]);
     }
 }

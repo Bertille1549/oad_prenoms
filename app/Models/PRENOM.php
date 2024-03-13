@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class PRENOM
- * 
+ *
  * @property int $PRENOM_ID
  * @property string $PRENOM
- * 
+ *
  * @property Collection|COMPTER[] $c_o_m_p_t_e_r_s
  * @property Collection|NAITRE[] $n_a_i_t_r_e_s
  *

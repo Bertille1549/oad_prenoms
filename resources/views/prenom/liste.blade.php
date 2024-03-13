@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :page="1">
     <div class="text-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Liste des prénoms entre 1900 et 2021
