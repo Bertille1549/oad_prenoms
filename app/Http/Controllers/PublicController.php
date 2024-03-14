@@ -21,20 +21,14 @@ class PublicController extends Controller
 
     // méthode statistics
     public function statistics() {
-
-        //$data = COMPTER::groupBy('PRENOM_ID')
-        //$data = COMPTER::join('GENRE', 'COMPTER.genre_id', '=', 'GENRE.genre_id')
-        //$data = COMPTER::all()
-        $data = GENRE::join('COMPTER', 'GENRE.genre_id', '=', 'COMPTER.genre_id')
+        // Graphe genre
+        $dataG = GENRE::join('COMPTER', 'GENRE.genre_id', '=', 'COMPTER.genre_id')
             ->get()
-            //->concat($datas)
-            //->groupBy('GENRE_ID')
             ->groupBy('GENRE')
             ->map(function ($item) {
                 // Retourne le nb de personne de genre
                 return count($item);
             });
-
 
         // Construction du graphique
         // Choix des couleurs
@@ -65,22 +59,36 @@ class PublicController extends Controller
         ];
         // les diff types de graphes
         // pie, line, bar
-        $chart = new SampleChart;
-        $chart->title('Le genre le plus né en 1900 avec les prénoms en A');
-        $chart->labels($data->keys());
-        $chart->dataset('Le genre le plus né en 1900 avec les prénoms en A', 'pie', $data->values())
+        $chartGenre = new SampleChart;
+        $chartGenre->title('Le genre le plus né en 1900 et en 1920');
+        $chartGenre->labels($dataG->keys());
+        $chartGenre->dataset('Le genre le plus né en 1900 et en 1920', 'pie', $dataG->values())
             // ajout colors
-            //->color("rgb(255, 99, 132)")
-            // on peut ajouter le bg color pour colorer "l'aire"
             ->color($borderColors)
             ->backgroundcolor($fillColors)
         ;
-        // permet d'enlever la grille
-        //$chart->minimalist(true);
 
-        return view('home', [
-            'chart' => $chart
-        ]);
+
+        // Graphe prénoms
+        $dataP = PRENOM::join('COMPTER', 'PRENOM.prenom_id', '=', 'COMPTER.prenom_id')
+            ->get()
+            ->groupBy('PRENOM')
+            ->take(10)
+            ->map(function ($item) {
+                // Retourne le nb de personne de genre
+                return count($item);
+            });
+        $chartP = new SampleChart;
+        $chartP->title('Les 10 prénoms les plus données en 1900 et en 1920');
+        $chartP->labels($dataP->keys());
+        $chartP->dataset('Les 10 prénoms les plus données en 1900 et en 1920', 'pie', $dataP->values())
+            // ajout colors
+            ->color($borderColors)
+            ->backgroundcolor($fillColors)
+        ;
+
+        // On retourne la vue
+        return view('home', compact('chartGenre', 'chartP'));
     }
 
     //méthode liste

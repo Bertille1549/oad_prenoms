@@ -5,20 +5,30 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-sky-500">
-                    {!! $chart->container() !!}
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h4>Le genre le plus né en 1900 et en 1920</h4>
+                    {!! $chartGenre->container() !!}
                 </div>
-                <!-- brouillon
-                dark:text-gray-100
-                text-gray-900
-
-                -->
             </div>
         </div>
     </div>
-    {!! $chart->script() !!}
+
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h4>Les 10 prénoms les plus données en 1900 et en 1920</h4>
+                    {!! $chartP->container() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {!! $chartP->script() !!}
+    {!! $chartGenre->script() !!}
 
 </x-guest-layout>
