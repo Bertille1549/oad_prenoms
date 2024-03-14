@@ -35,5 +35,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //Route::get('/', [PublicController::class, 'home'])->name('home');
-Route::get('/statistics', [PublicController::class, 'statistics'])->name('statistics');
+Route::get('/', [PublicController::class, 'statistics'])->name('home');
 Route::get('/prenoms', [PublicController::class, 'liste'])->name('prenom.liste');
